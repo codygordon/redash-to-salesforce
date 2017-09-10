@@ -24,6 +24,7 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "clean-logs": "rm ./logs/*.log"
   }
 }
