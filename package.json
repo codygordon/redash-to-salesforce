@@ -1,6 +1,6 @@
 {
   "name": "redash-to-salesforce",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Redash query data upload to Salesforce",
   "author": "Cody Gordon",
   "license": "UNLICENSED",
@@ -12,7 +12,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "dotenv": "^4.0.0",
-    "jsforce": "^1.8.0"
+    "jsforce": "^1.8.0",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "eslint": "^4.6.0",
