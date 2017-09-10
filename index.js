@@ -5,7 +5,7 @@ const { logger, finished } = require('./lib/handlers');
 
 const env = process.env.NODE_ENV;
 
-(async function init() {
+(async function start() {
   logger.info('starting upload in', env);
   await salesforce.connect();
   const contactsQuery = await redash.fetchQuery(2928);
