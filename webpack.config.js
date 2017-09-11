@@ -14,7 +14,7 @@ module.exports = {
     new CleanWebpack(['dist']),
     new Dotenv({
       path: '.env',
-      safe: true,
+      sample: '.env.example',
     }),
     new UglifyJS(),
   ],
