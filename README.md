@@ -14,7 +14,7 @@ $ npm i
 
 ## Config
 
-First, copy `.env.example` to a new `.env` (make sure to leave .env.example intact) and enter environmental variables (all are required for script to run).
+First, copy `.env.example` to a new `.env` (make sure to leave `.env.example` intact) and enter environmental variables (all are required for script to run).
 
 ```sh
 $ cp .env.example .env
@@ -31,7 +31,7 @@ Env Variable      | Value
 `REDASH_API_KEY` | *(find ReDash API key @ {redash_url}/users/{your_user_id}#apiKey)*
 `LOGS_PATH` | *(log files in production will be saved in specified folder path)*
 
-Second, edit the `lib\config` file and enter objects into the `config` constant (array) for each ReDash query / Salesforce object being processed, like so:
+Second, edit `lib\config.js` and enter objects into the `config` constant (array) for each ReDash query / Salesforce object being processed, for example:
 
 ```js
 const config = [
@@ -76,7 +76,7 @@ For each Salesforce object with data being upserted into there must be a separat
 
 ## Build
 
-Webpack is used to build into single production dist file that can be run by crontab:
+Webpack is used to build into single production dist file:
 
 ```sh
 $ npm run build
@@ -94,10 +94,14 @@ $ npm start
 
 ### Production
 
-You can either have an external service like `crontab` run the built scriptat `redash-to-salesforce\dist\index.js`, or run:
+You can either have an external service such as `crontab` run the built script at `redash-to-salesforce\dist\index.js`, or run:
 
 ```sh
 $ npm run prod
 ```
 
 In `production` mode a log file will be created in the specified directory each time the script is run and no logs will be sent to the console.
+
+## TODOs
+
+1. Write test suites in Mocha
