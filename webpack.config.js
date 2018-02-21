@@ -8,6 +8,7 @@ module.exports = {
   entry: './lib/index.js',
   target: 'node',
   output: {
+    libraryTarget: 'commonjs',
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -36,9 +37,9 @@ module.exports = {
       : [ new CleanWebpack(['dist']),
           new Dotenv({
             path: '.env',
-            safe: true,
+            safe: false,
           }),
-          new UglifyJS(),
+          // new UglifyJS(),
           new webpack.EnvironmentPlugin({
             NODE_ENV: 'production',
           }) ]),
