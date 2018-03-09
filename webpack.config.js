@@ -8,6 +8,7 @@ module.exports = {
   entry: './lib/index.js',
   target: 'node',
   output: {
+    libraryTarget: 'commonjs',
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -15,23 +16,31 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        //include: [path.resolve(__dirname, './lib')],
+        //exclude: /node_modules/,
+        exclude: [
+            /node_modules\/babel-/m,
+            /node_modules\/core-js\//m,
+            /node_modules\/regenerator-/m
+        ],
         loader: 'babel-loader',
         query: {
-          presets: ['stage-2'],
+          presets: ['es2015', 'es2017', 'stage-2'],
+          plugins: ["transform-runtime"]
         },
       },
     ],
   },
-  plugins: [
-    new CleanWebpack(['dist']),
-    new Dotenv({
-      path: '.env',
-      safe: true,
-    }),
-    new UglifyJS(),
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'production',
-    }),
-  ],
+  plugins: (
+    process.env.NO_ENV_CHANGE
+      ? [ new CleanWebpack(['dist'])]
+      : [ new CleanWebpack(['dist']),
+          new Dotenv({
+            path: '.env',
+            safe: false,
+          }),
+          // new UglifyJS(),
+          new webpack.EnvironmentPlugin({
+            NODE_ENV: 'production',
+          }) ]),
 };
